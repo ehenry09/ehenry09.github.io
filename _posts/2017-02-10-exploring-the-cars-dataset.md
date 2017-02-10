@@ -21,4 +21,6 @@ summary(cars)
 ##  Max.   :25.0   Max.   :120.00
 ```
 
-![plot of chunk cars2](elliot_website/images/exploring-the-cars-dataset-cars2-1.png) 
+![plot of chunk plot1](/Users/elliothenry/Desktop/elliot_website/images/exploring-the-cars-dataset-plot1-1.png) 
+  
+![plot of chunk plot2](/Users/elliothenry/Desktop/elliot_website/images/exploring-the-cars-dataset-plot2-1.png) 
