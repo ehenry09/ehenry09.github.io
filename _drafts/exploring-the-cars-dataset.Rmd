@@ -5,7 +5,7 @@ layout: post
 ---
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(fig.path="ehenry09.github.io/images/exploring-the-cars-dataset-")
+knitr::opts_chunk$set(fig.path="{{ ehenry09.github.io }} /images/exploring-the-cars-dataset-")
 ```
 
 ```{r table}
