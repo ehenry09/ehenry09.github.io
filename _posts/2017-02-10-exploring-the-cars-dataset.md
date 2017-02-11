@@ -22,5 +22,3 @@ summary(cars)
 ```
 
 ![plot of chunk plot1](http://ehenry09.github.io/images/exploring-he-cars-dataset-plot1-1.png) 
-  
-![plot of chunk plot2](http://ehenry09.github.io/images/exploring-he-cars-dataset-plot2-1.png) 
