@@ -1,0 +1,17 @@
+---
+title: "test_post"
+date: "February 10, 2017"
+layout: post
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(fig.path="ehenry09.github.io/images/exploring-the-cars-dataset-")
+```
+
+```{r table}
+summary(cars)
+```
+
+```{r plot1, echo=FALSE}
+plot(cars)
+```
