@@ -16,11 +16,11 @@ output = paste0(dir, sub('.Rmd', '.md', filename))
 knit(filename, output)
 
 # Copy .png files to the images directory.
-fromdir = "/images"
+fromdir = "{{ site.url }}/images"
 todir = "../images"
 
 pics = list.files(fromdir, ".png")
 pics = sapply(pics, function(x) paste(fromdir, x, sep="/"))
 file.copy(pics, todir)
 
-#unlink("ehenry09.github.io", recursive = TRUE)
+unlink("{{ site.url }}", recursive = TRUE)
