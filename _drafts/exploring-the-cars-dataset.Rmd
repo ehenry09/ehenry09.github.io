@@ -15,3 +15,9 @@ summary(cars)
 ```{r plot1, echo=FALSE}
 plot(cars)
 ```
+
+wow cool plot
+
+```{r plot2, echo=FALSE}
+plot(cars)
+```

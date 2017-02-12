@@ -22,3 +22,7 @@ summary(cars)
 ```
 
 ![plot of chunk plot1]({{ site.url }}/images/exploring-the-cars-dataset-plot1-1.png) 
+
+wow cool plot
+
+![plot of chunk plot2]({{ site.url }}/images/exploring-the-cars-dataset-plot2-1.png) 
