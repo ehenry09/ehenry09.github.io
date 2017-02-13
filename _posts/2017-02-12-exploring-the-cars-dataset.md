@@ -2,6 +2,7 @@
 title: "test_post"
 date: "February 10, 2017"
 layout: post
+comments: true
 ---
 
 
