@@ -1,3 +1,11 @@
+# to run script
+# cd to _drafts
+# make sure to this script executable by running
+# if you've run it before, you should be good
+# chmod +x r2jekyll.R
+# then run
+# ./r2jekyll.R hello-world.Rmd
+
 #!/usr/bin/env Rscript
 library(knitr)
 
