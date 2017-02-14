@@ -9,3 +9,5 @@ I am an insights and analytics professional with experience in operations and ma
 ### Contact me
 
 [elliot.s.henry@gmail.com](mailto:elliot.s.henry@gmail.com)
+
+[www.elliothenry.com](http://www.elliothenry.com/)
