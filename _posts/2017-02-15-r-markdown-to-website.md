@@ -7,6 +7,8 @@ comments: yes
 
 
 
+{% raw %}
+
 When I first started building [my website](http://www.elliothenry.com/), I decided to use [Wix](http://www.wix.com/). It's a great website builder that has lots of custom options -- it is kind of like the PowerPoint of website editing. My one issue with Wix is that I wanted to easily embed some R code into its pages. I was already familiar with R Markdown, so being able to publish R Markdown documents directly would be ideal. 
 
 In the following post, I am going to [ELI5](https://www.reddit.com/r/explainlikeimfive/) the entire process I go through to publish my R Markdown documents to a website. I probably went a little overboard embedding links, but I didn't want anyone to feel lost trying to figure out what I was talking about at any given moment (what the heck is a fork on GitHub?). It took my some time to iron out the process, so I hope you find this helpful.
@@ -112,3 +114,5 @@ jupyter nbconvert --to markdown name-of-your-post.ipynb
 This converts your Jupyter Notebook to Markdown, which will allow Jekyll to publish it to your site. You will manually need to move the file to the *_posts* folder once complete (yeah... I will work on a script to automate this at some point) and then push it to GitHub.
 
 That's it! I hope somebody found this helpful. I did take me a while to put all the pieces together, but now the process is running like a well oiled machine.
+
+{% endraw %}
