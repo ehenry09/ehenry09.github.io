@@ -21,29 +21,29 @@ Lastly, I am running this on macOS. The process should be the same for non-macOS
 
 After some internet searching about how to publish my R Markdown files directly to a website, I discovered [Jekyll](https://jekyllrb.com/). Jekyll will produce static sites from [Markdown](https://guides.github.com/features/mastering-markdown/) files and [GitHub](https://github.com/) will host your Jekyll site for free. [Installation](https://jekyllrb.com/docs/installation/) of Jekyll was simple and and efficient, so I won't cover it in detail here.
 
-Once Jekyll was installed, I [forked](https://help.github.com/articles/fork-a-repo/) the [Jekyll Now](https://github.com/barryclark/jekyll-now) repository from GitHub to setup a basic website shell. Make sure to rename the repository to *yourgithubusername.github.io* since this will be your site's custom URL. Now you can go to your URL and you will have (very basic and generic) website!
+Once Jekyll was installed, I [forked](https://help.github.com/articles/fork-a-repo/) the [Jekyll Now](https://github.com/barryclark/jekyll-now) repository from GitHub to setup a basic website shell. Make sure to rename the repository to *yourgithubusername.github.io* since this will be your site's custom URL. Now you can go to your URL and you will have a (very basic and generic) website!
 
 ## R Studio
 
 Most of you reading this probably already have [R Studio](https://www.rstudio.com/) installed. If you do not, [install](https://www.rstudio.com/products/rstudio/download/) it! I'd recommend using R Studio for publishing your R Markdown documents since it allows you to create projects (like... for managing website content) and easily integrates with GitHub.
 
-If R Studio is not already [linked to your GitHub account](https://www.r-bloggers.com/rstudio-and-github/), this will need to be setup. Once complete, create a new [project](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) using [version control](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN) and link repository you just created (yourgithubusername.github.io). Now, all files from the Jekyll Now repository will be available locally. This is where I do all of the editing for my posts, which I then [push](https://help.github.com/articles/pushing-to-a-remote/) to GitHub once they are ready.
+If R Studio is not already [linked to your GitHub account](https://www.r-bloggers.com/rstudio-and-github/), this will need to be setup. Once complete, create a new [project](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) using [version control](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN) and link the repository you just created (*yourgithubusername.github.io*). Now, all files from the Jekyll Now repository will be available locally. This is where I do all of the editing for my posts, which I then [push](https://help.github.com/articles/pushing-to-a-remote/) to GitHub once they are ready.
 
-I would now open the *_config.yml* in your repository and add some personalization and social media to your site. I linked [Google Analytics](https://www.google.com/analytics/) and [Disqus](https://disqus.com/) to my site so people like you can comment/correct any of my mistakes. There are also a myriad of free Jekyll [Themes](http://jekyll.tips/templates/) available. Since I originally used Wix to develop my site (and signed up for a yearly subscription, doh!), I did not add a custom theme. Maybe once my subscription lapses, I will get around to this. For now, I link my [ehenry09.github.io](https://ehenry09.github.io/) pages to my Wix [site](http://www.elliothenry.com/).
+I would now open the *_config.yml* in your local repository and add some personalization and social media to your site. I linked [Google Analytics](https://www.google.com/analytics/) and [Disqus](https://disqus.com/) to my site so people like you can comment or chide me for any mistakes I made while writing this :). There are also some really cool Jekyll [Themes](http://jekyll.tips/templates/) available for free. Since I originally used Wix to develop my site (and signed up for a yearly subscription, doh!), I did not add a custom theme. Maybe once my subscription lapses, I will get around to this. For now, I link my [ehenry09.github.io](https://ehenry09.github.io/) pages to my Wix [site](http://www.elliothenry.com/).
 
 ## R Markdown
 
-Using Jekyll gets us one step closer to being able to publish R Markdown files. The missing link is converting the R Markdown files to Markdown, which in turn will allow Jekyll to publish them to your GitHub site. The best solution I found was developed by [Nicole White](https://nicolewhite.github.io/2015/02/07/r-blogging-with-rmarkdown-knitr-jekyll.html). Her process uses [knitr](http://yihui.name/knitr/) to convert an R Markdown file to Markdown and then integrates it nicely into the Jekyll framework. I'll walk through her process, but please give her all the credit. 
+Using Jekyll gets us one step closer to being able to publish R Markdown files. The missing link is converting the R Markdown files to Markdown, which in turn will allow Jekyll to publish them to your GitHub site. The best solution I found was developed by [Nicole White](https://nicolewhite.github.io/2015/02/07/r-blogging-with-rmarkdown-knitr-jekyll.html). Her process uses [knitr](http://yihui.name/knitr/) to convert an R Markdown file to Markdown and then integrates the files nicely into the Jekyll framework. I'll walk through her process, but please give her all the credit. 
 
 First, in your [root directory](https://en.wikipedia.org/wiki/Root_directory), create a new folder called *_drafts*. Create a new R Markdown file (your first post!) and save it in the *_drafts* folder. Make sure that you save the R Markdown file using standard Jekyll nomenclature, lowercase text separated by hyphens.
 
-At the top of your new R Markdown file, delete *output: html_document* (or whatever output is specified) and add *layout: post*. If your post includes images, you will also need to add this chunk below as the first chunk in your post. Make sure to change *name-of-your-post-* below to whatever you saved your first post as. 
+At the top of your new R Markdown file, delete `output: html_document` (or whatever output is specified) and add `layout: post`. If your post includes images, you will also need to add this chunk below as the first chunk in your post. Make sure to change *name-of-your-post-* below to whatever you saved your first post as. 
 
 ```{r, eval=FALSE}
 knitr::opts_chunk$set(fig.path="{{ site.url }}/images/name-of-your-post-")
 ```
 
-**Note:** In order for the following code to work, you also need to have the URL (yourgithubusername.github.io) specified in the *_config.yml* file. You also do not need to change the `{{ site.url }}` below - this will automatically be generated from the *_config.yml* file.
+**Note:** In order for the following code to work, you also need to have the URL (*yourgithubusername.github.io*) specified in the *_config.yml* file. Also, you do not need to change the `{{ site.url }}` - this will automatically be generated from the *_config.yml* file.
 
 In your R Markdown document, feel free to add whatever content you'd like. In [Nichole White's example](http://nicolewhite.github.io/r-knitr-jekyll/2015/02/07/exploring-the-cars-dataset.html) she produced some simple plots using the publicly available cars dataset. I'd recommend testing out some images to ensure the paths are being correctly set.
 
@@ -78,7 +78,7 @@ file.copy(pics, todir)
 unlink("{{ site.url }}", recursive = TRUE)
 ```
 
-You will need to make the script executable. To do this, open up a terminal window. Navigate to the *_drafts* directory `cd your-file-path/_drafts` and execute the code `chmod +x r2jekyll.R`. Then you can run script below again making sure you replace the *name-of-your-post* to your actual post name. 
+You will need to make the script executable. To do this, open up a [terminal](http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line) window. Navigate to the *_drafts* directory `cd your-file-path/_drafts` and execute the code `chmod +x r2jekyll.R`. Then you can run script below, again making sure you replace the *name-of-your-post* to your actual post name. 
 
 ```{r, eval=FALSE}
 ./r2jekyll.R name-of-your-post.Rmd
