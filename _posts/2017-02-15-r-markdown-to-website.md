@@ -5,9 +5,7 @@ layout: post
 comments: yes
 ---
 
-```{r, include=FALSE}
-knitr::opts_chunk$set(fig.path="{{ site.url }}/images/building-a-website-with-r-markdown")
-```
+
 
 When I first started building a [website](http://www.elliothenry.com/), I decided to use [Wix](http://www.wix.com/). It's a great website builder and has lots of custom options -- it is kind of like the PowerPoint of website editing. My one issue with Wix is that I wanted to embed some code into the pages. I was already familiar with R Markdown, being able to publish R Markdown documents would be ideal.
 
@@ -27,7 +25,8 @@ At the top of your new R Markdown file, delete *output: html_document* (or whate
 
 Note: In order for the following code to work, you also need to have the URL (yourgithubusername.github.io) specified in the *_config.yml* file.
 
-```{r, message=FALSE, warning=FALSE, eval=FALSE}
+
+```r
 knitr::opts_chunk$set(fig.path="{{ site.url }}/images/name-of-your-post-")
 ```
 
@@ -35,7 +34,8 @@ In your R Markdown document, feel free to add whatever content you'd like. In [N
 
 Save the script below in your *_drafts* folder as *r2jekyll.R*. This is the script that will take a R Markdown file, convert it into Markdown, and then move the Markdown file to your *_posts* folder.
 
-```{r, eval=FALSE}
+
+```r
 #!/usr/bin/env Rscript
 library(knitr)
 
@@ -66,7 +66,8 @@ unlink("{{ site.url }}", recursive = TRUE)
 
 You will need to make the script executable. To do this, open up a terminal window. Navigate to the *_drafts* directory `cd your-file-path/_drafts` and execute the code `chmod +x r2jekyll.R`. Then you can run script:
 
-```{r, eval=FALSE}
+
+```r
 ./r2jekyll.R name-of-your-post.Rmd
 ```
 
@@ -76,7 +77,8 @@ Check your *_posts* folder and you will see your first post in Markdown format.
 
 I like to preview and tweak the formatting of my posts before pushing them to GitHub. To setup a local server and preview your post, navigate to the root directory of your website in the terminal and execute the command below.
 
-```{r, eval=FALSE}
+
+```r
 jekyll serve
 ```
 
@@ -88,7 +90,8 @@ Occasionally, I will work in [Python](https://www.python.org/) using [Jupyter No
 
 First, add the Jupyter Notebook file you would like to publish to the *_drafts* folder. Then, in the terminal, navigate to the drafts folder `cd your-file-path/_drafts`. Run the following code:
 
-```{r, eval=FALSE}
+
+```r
 jupyter nbconvert --to markdown name-of-your-post.ipynb
 ```
 
