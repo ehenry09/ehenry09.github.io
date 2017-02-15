@@ -96,7 +96,7 @@ I like to preview and tweak the formatting of my posts before pushing them to Gi
 jekyll serve
 ```
 
-The text suceedeing the successful command will direct you to the server address (usually [http://127.0.0.1:4000/](http://127.0.0.1:4000/)). You will now be able to preview your site using your internet browser.
+The text succeeding the successful command will direct you to the server address (usually [http://127.0.0.1:4000/](http://127.0.0.1:4000/)). You will now be able to preview your site using your internet browser.
 
 **TA-DA! That's it - your first post is published!**
 
