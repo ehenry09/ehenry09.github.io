@@ -6,8 +6,7 @@ comments: yes
 ---
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(fig.path="{{ site.url }}/images/building-a-website-with-r-markdown",
-                      fig.width = 9)
+knitr::opts_chunk$set(fig.path="{{ site.url }}/images/building-a-website-with-r-markdown")
 ```
 
 Random forests are a one of my favorite machine machine learning methods. I've found them to be incredibly powerful in predicting a number of items in my work, but often run into performance issues running them on my local machine. A [coworker](http://www.spencerdavison.com/) recommended the R package [H2O](https://cran.r-project.org/web/packages/h2o/h2o.pdf) -- an open source, high performance, in-memory machine learning platform. It has been a game changer in terms of my being able to run efficient predictive models locally. In this post, I will walk though implemenation of a random forest using a long passed Kaggle competition, [Don't Get Kicked](https://www.kaggle.com/c/DontGetKicked). 
@@ -153,7 +152,7 @@ The variable importance plot displays the scaled importance.
 h2o.varimp_plot(rfCarvana)
 ```
 
-![](http://ehenry09.github.io/images/random-forest-with-h2o-var-imp.png)
+<img src="http://ehenry09.github.io/images/random-forest-with-h2o-var-imp.png" width="160">
 
 Lastly, I will take a look at the ROC curve. Our model is better than making random predictions - yay!
 
