@@ -162,7 +162,7 @@ rfROC <- h2o.performance(rfCarvana, newdata = carvana_h2o$test)
 plot(rfROC)
 ```
 
-![](http://ehenry09.github.io/images/random-forest-with-h2o-roc.png)
+<img align="center" src="http://ehenry09.github.io/images/random-forest-with-h2o-roc.png" width="600" height="600">
 
 ## Cluster Shut Down
 
