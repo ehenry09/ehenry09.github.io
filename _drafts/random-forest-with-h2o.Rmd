@@ -152,7 +152,7 @@ The variable importance plot displays the scaled importance.
 h2o.varimp_plot(rfCarvana)
 ```
 
-<img src="http://ehenry09.github.io/images/random-forest-with-h2o-var-imp.png" width="160">
+<img align="center" src="http://ehenry09.github.io/images/random-forest-with-h2o-var-imp.png" width="600" height="600">
 
 Lastly, I will take a look at the ROC curve. Our model is better than making random predictions - yay!
 
