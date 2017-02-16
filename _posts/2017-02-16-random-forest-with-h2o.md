@@ -153,7 +153,7 @@ The variable importance plot displays the scaled importance.
 h2o.varimp_plot(rfCarvana)
 ```
 
-<img align="center" src="http://ehenry09.github.io/images/random-forest-with-h2o-var-imp.png" width="600" height="600">
+<img align="center" src="http://ehenry09.github.io/images/random-forest-with-h2o-var-imp.png">
 
 Lastly, I will take a look at the ROC curve. Our model is better than making random predictions - yay!
 
@@ -164,7 +164,7 @@ rfROC <- h2o.performance(rfCarvana, newdata = carvana_h2o$test)
 plot(rfROC)
 ```
 
-<img align="center" src="http://ehenry09.github.io/images/random-forest-with-h2o-roc.png" width="600" height="600">
+<img align="center" src="http://ehenry09.github.io/images/random-forest-with-h2o-roc.png">
 
 ## Cluster Shut Down
 
