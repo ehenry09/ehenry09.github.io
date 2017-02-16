@@ -91,35 +91,6 @@ rfCarvana@model$validation_metric
 ## Error in eval(expr, envir, enclos): object 'rfCarvana' not found
 ```
 
-> H2OBinomialMetrics: drf
-> ** Reported on validation data. **
-> 
-> MSE:  0.09138693
-> RMSE:  0.3023027
-> LogLoss:  0.3212215
-> Mean Per-Class Error:  0.3558316
-> AUC:  0.7417373
-> Gini:  0.4834746
-> 
-> Confusion Matrix for F1-optimal threshold:
->            0    1    Error         Rate
-> 0      15171  836 0.052227   =836/16007
-> 1       1520  785 0.659436   =1520/2305
-> Totals 16691 1621 0.128659  =2356/18312
-> 
-> Maximum Metrics: Maximum metrics at their respective thresholds
->                         metric threshold    value idx
-> 1                       max f1  0.261696 0.399898 153
-> 2                       max f2  0.089767 0.484260 291
-> 3                 max f0point5  0.518781 0.539575  71
-> 4                 max accuracy  0.537599 0.896352  65
-> 5                max precision  0.747559 1.000000   0
-> 6                   max recall  0.002605 1.000000 398
-> 7              max specificity  0.747559 1.000000   0
-> 8             max absolute_mcc  0.518781 0.397547  71
-> 9   max min_per_class_accuracy  0.109837 0.667245 269
-> 10 max mean_per_class_accuracy  0.139715 0.671752 239
-
 Whenever I run a random forest model, I always look at the variable importance output. It is interesting to see which variable perform well and which do not. Accroding to the H2O [documentation](http://h2o-release.s3.amazonaws.com/h2o/rel-tverberg/4/docs-website/h2o-docs/data-science/drf.html) ... 
 
 > "Variable importance is determined by calculating the relative influence of each variable: whether that variable was selected during splitting in the tree building process and how much the squared error (over all trees) improved as a result."
@@ -132,23 +103,6 @@ In our case, "WheelType" (The vehicle wheel type description (Alloy, Covers, Spe
 h2o.varimp(rfCarvana)
 ```
 
-> Variable Importances: 
->    variable relative_importance scaled_importance percentage
-> 1 WheelType        49828.539062          1.000000   0.186036
-> 2  SubModel        32987.582031          0.662022   0.123160
-> 3    VNZIP1        29212.203125          0.586254   0.109064
-> 4     BYRNO        23760.740234          0.476850   0.088711
-> 5     Color        14658.773438          0.294184   0.054729
->
-> ---
->                variable relative_importance scaled_importance percentage
-> 25 TopThreeAmericanName         1604.903564          0.032209   0.005992
-> 26             AUCGUART          656.030579          0.013166   0.002449
-> 27            PRIMEUNIT          586.631714          0.011773   0.002190
-> 28          Nationality          571.023254          0.011460   0.002132
-> 29         Transmission          541.581604          0.010869   0.002022
-> 30         IsOnlineSale          214.761398          0.004310   0.000802
-
 The variable importance plot displays the scaled importance.
 
 
@@ -156,8 +110,6 @@ The variable importance plot displays the scaled importance.
 # plot of variable importance
 h2o.varimp_plot(rfCarvana)
 ```
-
-![](http://ehenry09.github.io/images/random-forest-with-h2o-var-imp.png)
 
 Lastly, I will take a look at the ROC curve. Our model is better than making random predictions - yay!
 
@@ -167,8 +119,6 @@ Lastly, I will take a look at the ROC curve. Our model is better than making ran
 rfROC <- h2o.performance(rfCarvana, newdata = carvana_h2o$test)
 plot(rfROC)
 ```
-
-![](http://ehenry09.github.io/images/random-forest-with-h2o-roc.png)
 
 ## Cluster Shut Down
 
