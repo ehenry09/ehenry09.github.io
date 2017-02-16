@@ -1,0 +1,103 @@
+---
+layout: post
+title: "Carvana Example Dataset"
+author: "Elliot Henry"
+output: html_document
+---
+
+I've recently been implementing a lot of random forests in R at work. I've come across a number of differences between different R packages and even implementatinon in Python. I figure that going through these would be a good place to start for a first post.
+
+The original dataset from a long passed [Kaggle competion](https://www.kaggle.com/c/DontGetKicked). A lot of the publically available datasets I have found online have only one type of variable (typically numeric), however, I have found this dataset to be similar to the types I encounter in the workplace. If you are interested, there is also an accompanying [data dictionary](https://kaggle2.blob.core.windows.net/competitions-data/kaggle/2564/Carvana_Data_Dictionary.txt?sv=2015-12-11&sr=b&sig=I1DjyYYsQvaGeeoab2c%2BY6f8KyNdFbIsLRIxFqYcgKU%3D&se=2017-01-26T20%3A48%3A27Z&sp=r).
+
+First, I will implement the random forest in R using a package/machine learning tool [h2o](http://www.h2o.ai/).
+
+However, first we must setup the data:
+
+```{r}
+# read the data
+carvana <- read.csv("/Users/elliot.henry/Desktop/carvana_training_data.csv")
+
+# remove some unneeded variables
+carvana$RefId <- NULL
+carvana$PurchDate <- NULL
+carvana$WheelTypeID <- NULL
+
+# the data needs some cleaning & structuring
+# there are some "NULL"s and blanks that I will convert to NA
+carvana <- data.frame(lapply(carvana, as.character), stringsAsFactors = FALSE)
+carvana[carvana == ""] <- NA
+carvana[carvana == "NULL"] <- NA
+
+# converting to factor variables
+varFactor <- c("IsBadBuy", "Auction", "Make", "Model", "Trim", "SubModel", "Color", "Transmission",
+               "WheelType", "Nationality", "Size", "TopThreeAmericanName", "PRIMEUNIT", "AUCGUART", "BYRNO",
+               "VNZIP1", "VNST", "IsOnlineSale")
+carvana[varFactor] <- lapply(carvana[varFactor], as.factor)
+
+# converting to numeric variables
+# note: "VehYear" could also used as a factor
+varNumeric <- c("VehYear", "VehicleAge", "VehOdo", "MMRAcquisitionAuctionAveragePrice", "MMRAcquisitionAuctionCleanPrice",
+                "MMRAcquisitionRetailAveragePrice", "MMRAcquisitonRetailCleanPrice", "MMRCurrentAuctionAveragePrice", 
+                "MMRCurrentAuctionCleanPrice", "MMRCurrentRetailAveragePrice", "MMRCurrentRetailCleanPrice",
+                "VehBCost", "WarrantyCost")
+carvana[varNumeric] <- lapply(carvana[varNumeric], as.numeric)
+```
+
+Now, the data is ready to run the random forest model. Since I will be using h2o, I will need to initialize a local cluster before running the model.
+
+```{r, message = FALSE}
+# load the pacakge
+library(h2o)
+
+# disable the progress bar
+h2o.no_progress()
+
+# initialize local cluster
+localH2O <- h2o.init(nthreads = -1)
+
+# convert dataset to h2o object
+carvana_h2o <- as.h2o(carvana)
+
+# create training and testing sets
+carvana_h2o <- h2o.splitFrame(carvana_h2o, ratios = 0.75, destination_frames = c("train", "test"))
+names(carvana_h2o) <- c("train", "test")
+
+# creating a list of features for the model
+inputModel <- names(carvana[-1])
+
+# building the random forest model
+rfCarvana <- h2o.randomForest(training_frame = carvana_h2o$train, validation_frame = carvana_h2o$test, x = inputModel, y = "IsBadBuy", ntrees = 100, stopping_rounds = 2)
+```
+
+In this example, I just threw all the variables into the model. I would typically do a separate analysis to determine which features to include in the model. Let's take a look at variable importance and some metrics from the validation set.
+
+```{r, echo = FALSE}
+# variable importance
+h2o.varimp_plot(rfCarvana)
+
+# and some metrics from the validation set
+rfCarvana@model$validation_metric
+
+# build and plot the ROC curve
+rfROC <- h2o.performance(rfCarvana, newdata = carvana_h2o$test)
+plot(rfROC)
+
+# shut down the local cluster
+# if you want to refine your model futher, do not run this line
+h2o.shutdown(prompt = FALSE)
+```
+
+Lastly, if you want to [submit this](https://www.kaggle.com/c/DontGetKicked/submissions/attach) (or some other tweaked random forest model from my code above) to Kaggle, you can create the submission file below. You must use the test set provided on the [website](https://www.kaggle.com/c/DontGetKicked/data).
+
+```{r, eval = FALSE}
+# get predicions for test set
+preds <- h2o.predict(rfCarvana, carvana_test) # note: the test dataset I called carvana_test and performed the preprocessing above
+preds <- as.data.frame(preds)
+
+# create the submission dataframe
+submission <- cbind(refID, preds$predict)
+names(submission) <- c("refID", "IsBadBuy")
+
+# write the file to csv
+write.csv(submission, file = "somepath/submission.csv", row.names = FALSE)
+```
