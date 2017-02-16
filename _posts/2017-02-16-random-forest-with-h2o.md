@@ -5,6 +5,8 @@ layout: post
 comments: yes
 ---
 
+
+
 Random forests are a one of my favorite machine machine learning methods. I've found them to be incredibly powerful in predicting a number of items in my work, but often run into performance issues running them on my local machine. A [coworker](http://www.spencerdavison.com/) recommended the R package [H2O](https://cran.r-project.org/web/packages/h2o/h2o.pdf) -- an open source, high performance, in-memory machine learning platform. It has been a game changer in terms of my being able to run efficient predictive models locally. In this post, I will walk though implemenation of a random forest using a long passed Kaggle competition, [Don't Get Kicked](https://www.kaggle.com/c/DontGetKicked). 
 
 I chose this dataset since it has both numeric and categorical predictors, a mix I often find in my workspace. The goal of this Kaggle competition is essentially to predict which cars will be "lemons" when bought at auction. Download the [training data](https://www.kaggle.com/c/DontGetKicked/download/training.csv) to get started. There is also an accompanying [data dictionary](https://www.kaggle.com/c/DontGetKicked/download/Carvana_Data_Dictionary.txt) if you are interested in knowing the variable definitions.
@@ -89,10 +91,6 @@ Let's see how our model performed. The output below summarizes the model perform
 rfCarvana@model$validation_metric
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'rfCarvana' not found
-```
-
 **H2OBinomialMetrics: drf**
 
 * MSE:  0.08770201
@@ -103,25 +101,27 @@ rfCarvana@model$validation_metric
 * Gini:  0.4894817
 
 **Confusion Matrix for F1-optimal threshold:**
-|      |       0 |   1 |   Error   |      Rate    |
-|:----:|:-------:|:---:|:---------:|:------------:|    
-| 0    |   15237 |  697| 0.043743  | =697/15934   |
-|      |  1461   | 721 | 0.669569  |  =1461/2182  |
-|Totals|  16698  | 1418| 0.119121  | =2158/18116  |
+
+|      |       **0** |   **1** |   **Error**   |      **Rate**    |
+|:----:|:-----------:|:-------:|:-------------:|:----------------:|
+| 0    |       15237 |      697|     0.043743  |     =697/15934   |
+|      |      1461   |     721 |     0.669569  |      =1461/2182  |
+|Totals|      16698  |     1418|     0.119121  |     =2158/18116  |
 
 **Maximum Metrics: Maximum metrics at their respective thresholds**
-| metric                 | threshold |   value  | idx  |
-|:----------------------:|:---------:|:--------:|:----:|
-|f1                      | 0.296480  | 0.400556 | 144  |
-|f2                      | 0.103983  |0.479038  | 280  |
-|f0point5                | 0.544554  |0.537988  | 71   |
-|accuracy                | 0.544554  |0.900309  | 71   |
-|precision               | 0.857207  |1.000000  |  0   |
-|recall                  |  0.005868 |1.000000  | 395  |
-|specificity             |  0.857207 |1.000000  | 0    |
-|absolute_mcc            | 0.544554  |0.397583  | 71   |
-|min_per_class_accuracy  | 0.110008  |0.670516  | 274  |
-|mean_per_class_accuracy | 0.151616  |0.676490  | 236  |
+
+| **metric**                 | **threshold** |   **value**  | **idx**  |
+|:--------------------------:|:-------------:|:------------:|:--------:|
+|f1                          | 0.296480      | 0.400556     | 144      |
+|f2                          | 0.103983      |0.479038      | 280      |
+|f0point5                    | 0.544554      |0.537988      | 71       |
+|accuracy                    | 0.544554      |0.900309      | 71       |
+|precision                   | 0.857207      |1.000000      |  0       |
+|recall                      |  0.005868     |1.000000      | 395      |
+|specificity                 |  0.857207     |1.000000      | 0        |
+|absolute_mcc                | 0.544554      |0.397583      | 71       |
+|min_per_class_accuracy      | 0.110008      |0.670516      | 274      |
+|mean_per_class_accuracy     | 0.151616      |0.676490      | 236      |
 
 Whenever I run a random forest model, I always look at the variable importance output. It is interesting to see which variable perform well and which do not. Accroding to the H2O [documentation](http://h2o-release.s3.amazonaws.com/h2o/rel-tverberg/4/docs-website/h2o-docs/data-science/drf.html) ... 
 
@@ -137,13 +137,13 @@ h2o.varimp(rfCarvana)
 
 **Variable Importances: Top 5**
 
-| variable | relative_importance | scaled_importance | percentage |
-|:--------:|:-------------------:|:-----------------:|:----------:|
-| WheelType|        53910        |          1.00     | 0.18       |
-| SubModel |        35982        |          0.66     | 0.12       |
-| VNZIP1   |     33045           |     0.61          |  0.11      |
-| BYRNO    |   25883             |     0.48          | 0.08       |
-| Color    |       16262         |         0.30      |0.05        |
+| **variable** | **relative_importance** | **scaled_importance** | **percentage** |
+|:------------:|:-----------------------:|:---------------------:|:--------------:|
+| WheelType    |        53910            |          1.00         | 0.18           |
+| SubModel     |        35982            |          0.66         | 0.12           |
+| VNZIP1       |     33045               |     0.61              |  0.11          |
+| BYRNO        |   25883                 |     0.48              | 0.08           |
+| Color        |       16262             |         0.30          |0.05            |
 
 The variable importance plot displays the scaled importance.
 
