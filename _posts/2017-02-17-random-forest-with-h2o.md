@@ -91,6 +91,11 @@ Let's see how our model performed. The output below summarizes the model perform
 rfCarvana@model$validation_metric
 ```
 
+
+```
+## [1] "\nH2OBinomialMetrics: drf\n** Reported on validation data. **\n\nMSE:  0.08770201\nRMSE:  0.2961452\nLogLoss:  0.3104513\nMean Per-Class Error:  0.3566561\nAUC:  0.7447409\nGini:  0.4894817\n\nConfusion Matrix for F1-optimal threshold:\n           0    1    Error         Rate\n0      15237  697 0.043743   =697/15934\n1       1461  721 0.669569   =1461/2182\nTotals 16698 1418 0.119121  =2158/18116\n\nMaximum Metrics: Maximum metrics at their respective thresholds\n                        metric threshold    value idx\n1                       max f1  0.296480 0.400556 144\n2                       max f2  0.103983 0.479038 280\n3                 max f0point5  0.544554 0.537988  71\n4                 max accuracy  0.544554 0.900309  71\n5                max precision  0.857207 1.000000   0\n6                   max recall  0.005868 1.000000 395\n7              max specificity  0.857207 1.000000   0\n8             max absolute_mcc  0.544554 0.397583  71\n9   max min_per_class_accuracy  0.110008 0.670516 274\n10 max mean_per_class_accuracy  0.151616 0.676490 236\n\nGains/Lift Table: Extract with `h2o.gainsLift(<model>, <data>)` or `h2o.gainsLift(<model>, valid=<T/F>, xval=<T/F>)`"
+```
+
 **H2OBinomialMetrics: drf**
 
 * MSE:  0.08770201
@@ -109,14 +114,6 @@ rfCarvana@model$validation_metric
 ## 1       1461  721  0.66  =1461/2182
 ## Totals 16698 1418  0.11 =2158/18116
 ```
-
-**Confusion Matrix for F1-optimal threshold:**
-
-|      |       **0** |   **1** |   **Error**   |      **Rate**    |
-|:-----|:-----------:|:-------:|:-------------:|:----------------:|
-| 0    |       15237 |      697|     0.04      |     =697/15934   |
-| 1    |      1461   |     721 |     0.66      |      =1461/2182  |
-|Totals|      16698  |     1418|     0.11      |     =2158/18116  |
 
 **Maximum Metrics: Maximum metrics at their respective thresholds**
 

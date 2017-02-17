@@ -92,6 +92,40 @@ Let's see how our model performed. The output below summarizes the model perform
 rfCarvana@model$validation_metric
 ```
 
+```{r, echo = FALSE}
+print("
+H2OBinomialMetrics: drf
+** Reported on validation data. **
+
+MSE:  0.08770201
+RMSE:  0.2961452
+LogLoss:  0.3104513
+Mean Per-Class Error:  0.3566561
+AUC:  0.7447409
+Gini:  0.4894817
+
+Confusion Matrix for F1-optimal threshold:
+           0    1    Error         Rate
+0      15237  697 0.043743   =697/15934
+1       1461  721 0.669569   =1461/2182
+Totals 16698 1418 0.119121  =2158/18116
+
+Maximum Metrics: Maximum metrics at their respective thresholds
+                        metric threshold    value idx
+1                       max f1  0.296480 0.400556 144
+2                       max f2  0.103983 0.479038 280
+3                 max f0point5  0.544554 0.537988  71
+4                 max accuracy  0.544554 0.900309  71
+5                max precision  0.857207 1.000000   0
+6                   max recall  0.005868 1.000000 395
+7              max specificity  0.857207 1.000000   0
+8             max absolute_mcc  0.544554 0.397583  71
+9   max min_per_class_accuracy  0.110008 0.670516 274
+10 max mean_per_class_accuracy  0.151616 0.676490 236
+
+Gains/Lift Table: Extract with `h2o.gainsLift(<model>, <data>)` or `h2o.gainsLift(<model>, valid=<T/F>, xval=<T/F>)`")
+```
+
 **H2OBinomialMetrics: drf**
 
 * MSE:  0.08770201
@@ -114,14 +148,6 @@ rownames(confusionMatrix) <- c("0", "1", "Totals")
 confusionMatrix <- as.data.frame(confusionMatrix)
 confusionMatrix
 ```
-
-**Confusion Matrix for F1-optimal threshold:**
-
-|      |       **0** |   **1** |   **Error**   |      **Rate**    |
-|:-----|:-----------:|:-------:|:-------------:|:----------------:|
-| 0    |       15237 |      697|     0.04      |     =697/15934   |
-| 1    |      1461   |     721 |     0.66      |      =1461/2182  |
-|Totals|      16698  |     1418|     0.11      |     =2158/18116  |
 
 **Maximum Metrics: Maximum metrics at their respective thresholds**
 
