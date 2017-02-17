@@ -5,9 +5,7 @@ layout: post
 comments: yes
 ---
 
-```{r, include=FALSE}
-knitr::opts_chunk$set(fig.path="{{ site.url }}/images/building-a-website-with-r-markdown")
-```
+
 
 Random forests are a one of my favorite machine machine learning methods. I've found them to be incredibly powerful in predicting a number of items in my work, but often run into performance issues running them on my local machine. A [coworker](http://www.spencerdavison.com/) recommended the R package [H2O](https://cran.r-project.org/web/packages/h2o/h2o.pdf) -- an open source, high performance, in-memory machine learning platform. It has been a game changer in terms of my being able to run efficient predictive models locally. In this post, I will walk though implemenation of a random forest using a long passed Kaggle competition, [Don't Get Kicked](https://www.kaggle.com/c/DontGetKicked). 
 
@@ -19,11 +17,10 @@ One last note before digging into the reading. Markdown has trouble working with
 
 First, I will read the data and clean it up a bit.
 
-```{r, include=FALSE}
-your_file_path <- "/Users/elliot.henry/Desktop/"
-```
 
-```{r, message=FALSE, eval=FALSE}
+
+
+```r
 # read the data
 carvana <- read.csv(paste(your_file_path, "training.csv", sep = ""))
 
@@ -57,7 +54,8 @@ carvana[varNumeric] <- lapply(carvana[varNumeric], as.numeric)
 
 Now that the data has been formatted, let's run the random forest model. Since I will be using H2O, I will need to initialize a local cluster before running the model. I will also be using a 75% of the data as a training set and 25% as the testing set. There is a separate [testing data set](https://www.kaggle.com/c/DontGetKicked/download/test.csv) available on Kaggle. If you wish to use the entire *training.csv* file as training set and the *test.csv* file as the test set, you could certainly do that too.
 
-```{r, message = FALSE, warning=FALSE, eval=FALSE}
+
+```r
 # load the pacakge
 library(h2o)
 
@@ -87,7 +85,8 @@ In this example, I just threw all the variables into the model. I would typicall
 
 Let's see how our model performed. The output below summarizes the model performance on the test set of data used (the 25% held out from the *training.csv*).
 
-```{r, eval=FALSE}
+
+```r
 # print metrics from the validation set
 rfCarvana@model$validation_metric
 ```
@@ -101,15 +100,9 @@ rfCarvana@model$validation_metric
 * AUC:  0.7447409
 * Gini:  0.4894817
 
-```{r, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-confusionMatrix <- "
-|      |       **0** |   **1** |   **Error**   |      **Rate**    |
-|:-----|:-----------:|:-------:|:-------------:|:----------------:|
-| 0    |       15237 |      697|     0.043743  |     =697/15934   |
-| 1    |      1461   |     721 |     0.669569  |      =1461/2182  |
-|Totals|      16698  |     1418|     0.119121  |     =2158/18116  |
-"
-cat(tabl)
+
+```
+## Error in cat(tabl): object 'tabl' not found
 ```
 
 **Confusion Matrix for F1-optimal threshold:**
@@ -141,7 +134,8 @@ Whenever I run a random forest model, I always look at the variable importance o
 
 In our case, "WheelType" (The vehicle wheel type description (Alloy, Covers, Special)) was the stongest performer.
 
-```{r, eval=FALSE}
+
+```r
 # variable importance
 h2o.varimp(rfCarvana)
 ```
@@ -158,7 +152,8 @@ h2o.varimp(rfCarvana)
 
 The variable importance plot displays the scaled importance.
 
-```{r, eval=FALSE}
+
+```r
 # plot of variable importance
 h2o.varimp_plot(rfCarvana)
 ```
@@ -167,7 +162,8 @@ h2o.varimp_plot(rfCarvana)
 
 Lastly, I will take a look at the ROC curve. Our model is better than making random predictions - yay!
 
-```{r, eval=FALSE}
+
+```r
 # build and plot the ROC curve
 rfROC <- h2o.performance(rfCarvana, newdata = carvana_h2o$test)
 plot(rfROC)
@@ -179,7 +175,8 @@ plot(rfROC)
 
 If you are satisfied with the result, go ahead and shutdown the cluster you have running locally. However, if you would like to go back and refine the model you built, shut it down later. 
 
-```{r, eval=FALSE}
+
+```r
 # shut down the local cluster
 # if you want to refine your model futher, do not run this line
 h2o.shutdown(prompt = FALSE)
@@ -191,7 +188,8 @@ If you want to [submit](https://www.kaggle.com/c/DontGetKicked/submissions/attac
 
 This solution will get you about middle of the pack on Kaggle.
 
-```{r, eval = FALSE}
+
+```r
 # get predicions for test set
 # note: the test dataset I called "carvana_test" and performed the preprocessing above
 preds <- h2o.predict(rfCarvana, carvana_test) 
