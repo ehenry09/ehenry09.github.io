@@ -103,6 +103,12 @@ rfCarvana@model$validation_metric
 **Confusion Matrix for F1-optimal threshold:**
 
 
+```
+##            0    1 Error        Rate
+## 0      15237  697  0.04  =697/15934
+## 1       1461  721  0.66  =1461/2182
+## Totals 16698 1418  0.11 =2158/18116
+```
 
 **Confusion Matrix for F1-optimal threshold:**
 

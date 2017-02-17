@@ -103,7 +103,7 @@ rfCarvana@model$validation_metric
 
 **Confusion Matrix for F1-optimal threshold:**
 
-```{r, include=FALSE}
+```{r, echo=FALSE}
 col1 <- c(15237, 1461, 16698)
 col2 <- c(697, 721, 1418)
 col3 <-  c(0.04, 0.66, 0.11)
