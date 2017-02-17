@@ -93,10 +93,8 @@ rfCarvana@model$validation_metric
 ```
 
 ```{r, echo = FALSE}
-cat("
-H2OBinomialMetrics: drf
-\n** Reported on validation data. **
-\n
+cat("H2OBinomialMetrics: drf\n
+** Reported on validation data. **\n
 \nMSE:  0.08770201
 \nRMSE:  0.2961452
 \nLogLoss:  0.3104513

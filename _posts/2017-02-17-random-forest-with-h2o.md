@@ -93,11 +93,9 @@ rfCarvana@model$validation_metric
 
 
 ```
-## 
 ## H2OBinomialMetrics: drf
 ## 
 ## ** Reported on validation data. **
-## 
 ## 
 ## 
 ## MSE:  0.08770201
