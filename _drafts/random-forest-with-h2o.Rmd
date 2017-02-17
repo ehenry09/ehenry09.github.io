@@ -93,74 +93,36 @@ rfCarvana@model$validation_metric
 ```
 
 ```{r, echo = FALSE}
-cat("H2OBinomialMetrics: drf\n
-** Reported on validation data. **\n
-\nMSE:  0.08770201
-\nRMSE:  0.2961452
-\nLogLoss:  0.3104513
-\nMean Per-Class Error:  0.3566561
-\nAUC:  0.7447409
-\nGini:  0.4894817
-\n
-\nConfusion Matrix for F1-optimal threshold:
-\n           0    1    Error         Rate
-\n0      15237  697 0.043743   =697/15934
-\n1       1461  721 0.669569   =1461/2182
-\nTotals 16698 1418 0.119121  =2158/18116
-\n
-\nMaximum Metrics: Maximum metrics at their respective thresholds
-\n                        metric threshold    value idx
-\n1                       max f1  0.296480 0.400556 144
-\n2                       max f2  0.103983 0.479038 280
-\n3                 max f0point5  0.544554 0.537988  71
-\n4                 max accuracy  0.544554 0.900309  71
-\n5                max precision  0.857207 1.000000   0
-\n6                   max recall  0.005868 1.000000 395
-\n7              max specificity  0.857207 1.000000   0
-\n8             max absolute_mcc  0.544554 0.397583  71
-\n9   max min_per_class_accuracy  0.110008 0.670516 274
-\n10 max mean_per_class_accuracy  0.151616 0.676490 236
-\n
-\nGains/Lift Table: Extract with `h2o.gainsLift(<model>, <data>)` or `h2o.gainsLift(<model>, valid=<T/F>, xval=<T/F>)`")
+cat("H2OBinomialMetrics: drf
+** Reported on validation data. **
+MSE:  0.08770201
+RMSE:  0.2961452
+LogLoss:  0.3104513
+Mean Per-Class Error:  0.3566561
+AUC:  0.7447409
+Gini:  0.4894817
+
+Confusion Matrix for F1-optimal threshold:
+           0    1    Error         Rate
+0      15237  697 0.043743   =697/15934
+1       1461  721 0.669569   =1461/2182
+Totals 16698 1418 0.119121  =2158/18116
+
+Maximum Metrics: Maximum metrics at their respective thresholds
+                        metric threshold    value idx
+1                       max f1  0.296480 0.400556 144
+2                       max f2  0.103983 0.479038 280
+3                 max f0point5  0.544554 0.537988  71
+4                 max accuracy  0.544554 0.900309  71
+5                max precision  0.857207 1.000000   0
+6                   max recall  0.005868 1.000000 395
+7              max specificity  0.857207 1.000000   0
+8             max absolute_mcc  0.544554 0.397583  71
+9   max min_per_class_accuracy  0.110008 0.670516 274
+10 max mean_per_class_accuracy  0.151616 0.676490 236
+
+Gains/Lift Table: Extract with `h2o.gainsLift(<model>, <data>)` or `h2o.gainsLift(<model>, valid=<T/F>, xval=<T/F>)`")
 ```
-
-**H2OBinomialMetrics: drf**
-
-* MSE:  0.08770201
-* RMSE:  0.2961452
-* LogLoss:  0.3104513
-* Mean Per-Class Error:  0.3566561
-* AUC:  0.7447409
-* Gini:  0.4894817
-
-**Confusion Matrix for F1-optimal threshold:**
-
-```{r, echo=FALSE}
-col1 <- c(15237, 1461, 16698)
-col2 <- c(697, 721, 1418)
-col3 <-  c(0.04, 0.66, 0.11)
-col4 <- c("=697/15934", "=1461/2182", "=2158/18116")
-confusionMatrix <- cbind(col1, col2, col3, col4)
-colnames(confusionMatrix) <- c("0", "1", "Error", "Rate")
-rownames(confusionMatrix) <- c("0", "1", "Totals")
-confusionMatrix <- as.data.frame(confusionMatrix)
-confusionMatrix
-```
-
-**Maximum Metrics: Maximum metrics at their respective thresholds**
-
-| **metric**                 | **threshold** |   **value**  | **idx**  |
-|:---------------------------|:-------------:|:------------:|:--------:|
-|f1                          | 0.29          | 0.40         | 144      |
-|f2                          | 0.10          |0.47          | 280      |
-|f0point5                    | 0.54          |0.53          | 71       |
-|accuracy                    | 0.54          |0.90          | 71       |
-|precision                   | 0.85          |1.00          |  0       |
-|recall                      |  0.00         |1.00          | 395      |
-|specificity                 |  0.85         |1.00          | 0        |
-|absolute_mcc                | 0.54          |0.39          | 71       |
-|min_per_class_accuracy      | 0.11          |0.67          | 274      |
-|mean_per_class_accuracy     | 0.15          |0.67          | 236      |
 
 Whenever I run a random forest model, I always look at the variable importance output. It is interesting to see which variable perform well and which do not. Accroding to the H2O [documentation](http://h2o-release.s3.amazonaws.com/h2o/rel-tverberg/4/docs-website/h2o-docs/data-science/drf.html) ... 
 
@@ -173,15 +135,24 @@ In our case, "WheelType" (The vehicle wheel type description (Alloy, Covers, Spe
 h2o.varimp(rfCarvana)
 ```
 
-**Variable Importances: Top 5**
+```{r, echo = FALSE}
+cat("Variable Importances: 
+   variable relative_importance scaled_importance percentage
+1 WheelType        53910.425781          1.000000   0.183251
+2  SubModel        35982.921875          0.667458   0.122312
+3    VNZIP1        33045.710938          0.612974   0.112328
+4     BYRNO        25883.117188          0.480113   0.087981
+5     Color        16262.140625          0.301651   0.055278
 
-| **variable** | **relative_importance** | **scaled_importance** | **percentage** |
-|:-------------|:-----------------------:|:---------------------:|:--------------:|
-| WheelType    |        53910            |          1.00         | 0.18           |
-| SubModel     |        35982            |          0.66         | 0.12           |
-| VNZIP1       |     33045               |     0.61              |  0.11          |
-| BYRNO        |   25883                 |     0.48              | 0.08           |
-| Color        |       16262             |         0.30          |0.05            |
+---
+               variable relative_importance scaled_importance percentage
+25 TopThreeAmericanName         1692.602905          0.031397   0.005753
+26             AUCGUART          654.976257          0.012149   0.002226
+27          Nationality          643.357788          0.011934   0.002187
+28         Transmission          620.358093          0.011507   0.002109
+29            PRIMEUNIT          540.431274          0.010025   0.001837
+30         IsOnlineSale          235.844467          0.004375   0.000802")
+```
 
 The variable importance plot displays the scaled importance.
 
