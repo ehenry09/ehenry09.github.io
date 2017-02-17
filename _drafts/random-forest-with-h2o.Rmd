@@ -109,7 +109,7 @@ confusionMatrix <- "
 | 1    |      1461   |     721 |     0.669569  |      =1461/2182  |
 |Totals|      16698  |     1418|     0.119121  |     =2158/18116  |
 "
-cat(tabl)
+cat(confusionMatrix)
 ```
 
 **Confusion Matrix for F1-optimal threshold:**
