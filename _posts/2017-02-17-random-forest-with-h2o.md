@@ -11,7 +11,7 @@ Random forests are a one of my favorite machine machine learning methods. I've f
 
 I chose this dataset since it has both numeric and categorical predictors, a mix I often find in my workspace. The goal of this Kaggle competition is essentially to predict which cars will be "lemons" when bought at auction. Download the [training data](https://www.kaggle.com/c/DontGetKicked/download/training.csv) to get started. There is also an accompanying [data dictionary](https://www.kaggle.com/c/DontGetKicked/download/Carvana_Data_Dictionary.txt) if you are interested in knowing the variable definitions.
 
-One last note before digging into the reading. Markdown has trouble working with the H2O environment. So, I ran the code in a separate workbook and have pasted in the code/images separately.
+One last note before digging into the reading. Markdown has trouble working with the H2O environment. So, I ran the code in a separate workbook and have pasted in the code output/images separately into my document. I also did not set a seed, so your results (if you choose to run this) may be slightly different from my own.
 
 ## Data Setup
 
