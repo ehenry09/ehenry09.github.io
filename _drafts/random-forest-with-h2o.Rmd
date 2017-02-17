@@ -101,24 +101,27 @@ rfCarvana@model$validation_metric
 * AUC:  0.7447409
 * Gini:  0.4894817
 
-```{r, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-confusionMatrix <- "
-|      |       **0** |   **1** |   **Error**   |      **Rate**    |
-|:-----|:-----------:|:-------:|:-------------:|:----------------:|
-| 0    |       15237 |      697|     0.043743  |     =697/15934   |
-| 1    |      1461   |     721 |     0.669569  |      =1461/2182  |
-|Totals|      16698  |     1418|     0.119121  |     =2158/18116  |
-"
-cat(confusionMatrix)
+**Confusion Matrix for F1-optimal threshold:**
+
+```{r, include=FALSE}
+col1 <- c(15237, 1461, 16698)
+col2 <- c(697, 721, 1418)
+col3 <-  c(0.04, 0.66, 0.11)
+col4 <- c("=697/15934", "=1461/2182", "=2158/18116")
+confusionMatrix <- cbind(col1, col2, col3, col4)
+colnames(confusionMatrix) <- c("0", "1", "Error", "Rate")
+rownames(confusionMatrix) <- c("0", "1", "Totals")
+confusionMatrix <- as.data.frame(confusionMatrix)
+confusionMatrix
 ```
 
 **Confusion Matrix for F1-optimal threshold:**
 
 |      |       **0** |   **1** |   **Error**   |      **Rate**    |
 |:-----|:-----------:|:-------:|:-------------:|:----------------:|
-| 0    |       15237 |      697|     0.043743  |     =697/15934   |
-| 1    |      1461   |     721 |     0.669569  |      =1461/2182  |
-|Totals|      16698  |     1418|     0.119121  |     =2158/18116  |
+| 0    |       15237 |      697|     0.04      |     =697/15934   |
+| 1    |      1461   |     721 |     0.66      |      =1461/2182  |
+|Totals|      16698  |     1418|     0.11      |     =2158/18116  |
 
 **Maximum Metrics: Maximum metrics at their respective thresholds**
 
