@@ -9,7 +9,6 @@ comments: yes
 
 When I first started building [my website](http://www.elliothenry.com/), I decided to use [Wix](http://www.wix.com/). It's a great website builder that has lots of custom options -- it is kind of like the PowerPoint of website editing. My one issue with Wix is that I wanted to easily embed some R code into its pages. I was already familiar with R Markdown, so being able to publish R Markdown documents directly would be ideal.
 
-{% raw %}
 In the following post, I am going to [ELI5](https://www.reddit.com/r/explainlikeimfive/) the entire process I go through to publish my R Markdown documents to a website. I probably went a little overboard embedding links, but I didn't want anyone to feel lost trying to figure out what I was talking about at any given moment (what the heck is a fork on GitHub?). It took my some time to iron out the process, so I hope you find this helpful.
 
 Lastly, I am running this on macOS. The process should be the same for non-macOS users, but installation of some of the packages may be a little different.
@@ -37,9 +36,9 @@ First, in your [root directory](https://en.wikipedia.org/wiki/Root_directory), c
 At the top of your new R Markdown file, delete `output: html_document` (or whatever output is specified) and add `layout: post`. If your post includes images, you will also need to add this chunk below as the first chunk in your post. Make sure to change *name-of-your-post-* below to whatever you saved your first post as. 
 
 
-```r
+{% highlight r %}
 knitr::opts_chunk$set(fig.path="{{ site.url }}/images/name-of-your-post-")
-```
+{% endhighlight %}
 
 **Note:** In order for the following code to work, you also need to have the URL (*yourgithubusername.github.io*) specified in the *_config.yml* file. Also, you do not need to change the `{{ site.url }}` - this will automatically be generated from the *_config.yml* file.
 
@@ -48,7 +47,7 @@ In your R Markdown document, feel free to add whatever content you'd like. In [N
 Save the script below in your *_drafts* folder as *r2jekyll.R*. This is the script that will take a R Markdown file, using knitr convert it into Markdown, and then move the Markdown file to your *_posts* folder. The Markdown files in the *_posts* folder will in turn be published by Jekyll.
 
 
-```r
+{% highlight r %}
 #!/usr/bin/env Rscript
 library(knitr)
 
@@ -75,14 +74,14 @@ pics = sapply(pics, function(x) paste(fromdir, x, sep="/"))
 file.copy(pics, todir)
 
 unlink("{{ site.url }}", recursive = TRUE)
-```
+{% endhighlight %}
 
 You will need to make the script executable. To do this, open up a [terminal](http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line) window. Navigate to the *_drafts* directory `cd your-file-path/_drafts` and execute the code `chmod +x r2jekyll.R`. Then you can run script below, again making sure you replace the *name-of-your-post* to your actual post name. 
 
 
-```r
+{% highlight bash %}
 ./r2jekyll.R name-of-your-post.Rmd
-```
+{% endhighlight %}
 
 Check your *_posts* folder and you will see your first post in Markdown format.
 
@@ -91,9 +90,9 @@ Check your *_posts* folder and you will see your first post in Markdown format.
 I like to preview and tweak the formatting of my posts before pushing them to GitHub. To setup a local server and preview your post, navigate to the root directory of your website in the terminal and execute the command below.
 
 
-```r
+{% highlight bash %}
 jekyll serve
-```
+{% endhighlight%}
 
 The text succeeding the successful command will direct you to the server address (usually [http://127.0.0.1:4000/](http://127.0.0.1:4000/)). You will now be able to preview your site using your internet browser.
 
@@ -106,12 +105,10 @@ Occasionally, I will work in [Python](https://www.python.org/) using [Jupyter No
 First, add the Jupyter Notebook file you would like to publish to the *_drafts* folder. Make sure the file is named using standard Jekyll nomenclature, lowercase text separated by hyphens. Then, in the terminal, navigate to the drafts folder `cd your-file-path/_drafts`. Run the following code:
 
 
-```r
+{% highlight bash %}
 jupyter nbconvert --to markdown name-of-your-post.ipynb
-```
+{% endhighlight %}
 
 This converts your Jupyter Notebook to Markdown, which will allow Jekyll to publish it to your site. You will manually need to move the file to the *_posts* folder once complete (yeah... I will work on a script to automate this at some point) and then push it to GitHub.
 
 That's it! I hope somebody found this helpful. I did take me a while to put all the pieces together, but now the process is running like a well oiled machine.
-
-{% endraw %}

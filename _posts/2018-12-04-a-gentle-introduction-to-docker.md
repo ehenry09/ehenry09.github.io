@@ -39,24 +39,24 @@ Docker is simple to install, so I will not walk you through it. There are [macOS
 
 I've also prepared a simple repository to use for this article which can be downloaded from [GitHub](https://github.com/ehenry09/docker-demo). After this has been downloaded and unzipped, move it a place that is easily accessible to you. We will break this down in the following secions, but the basic file structue is as follows.
 
-```bash
+{% highlight bash %}
 |--scripts
 |	|--make-plot.py
 |
 |--Dockerfile
 |--README.md
-```
+{% endhighlight %}
 
 ## The Dockerfile
 
 In this repository, you will see a Dockerfile. Keeping with the recipe analogy, the Dockerfile is analagous to your written recipe. It contains all of the instructions as to what to include in your container. I will break down each step to give an understanding of what is happening.
 
-```bash
+{% highlight bash %}
 FROM python:3.7
 COPY . /app
 RUN pip install seaborn
 CMD ["python", "/app/scripts/make_plot.py"]
-```
+{% endhighlight %}
 
 A Dockerfile always starts from a base image. This is like the pie crust, the starting point, for your recipe. In the Dockerfile, `FROM` indicates the base image you are using. In this example file, we are using a python 3.7 image. If you want an older version of python, say you have some code that runs Python 2.7, you can indicate that by adding the 2.7 digest (yes, that's technically what it's called) after the image name. So, if you wanted to run Python 2.7, you can change `python:3.7` to `python:2.7`. Alternatively, you can add a tag after the image name `python:latest` to pull the lastest version of the python image. Things may change from time to time with the images, so if you want to be safe, I'd maintain and specific image in your code and test before updating.
 
@@ -66,14 +66,14 @@ After setting the base image, we can start to add customizations to our environm
 
 `RUN` executes a shell command inside of your Docker container. We want to run the `make-plot.py` script, which depends on the [seaborn](https://seaborn.pydata.org/index.html) library. Here we install it with `pip`. See the `make-plot.py` file below.
 
-```python
+{% highlight python %}
 import seaborn as sns
 df = sns.load_dataset('iris')
 sns_plot = sns.pairplot(df, hue='species')
 sns_plot.savefig("output.png")
 
 print("Great Success!")
-```
+{% endhighlight %}
 
 `CMD` instructs Docker what to execute once the image is launched. We want to run our `make_plot.py` script, and we tell Docker to do that with `["python", "/app/scripts/make_plot.py"]`. The syntax here is a little odd - make sure each argument is in quotes and separated by a comma. 
 
@@ -83,9 +83,9 @@ One note: when Docker is run, it automatically looks for a Dockerfile called Doc
 
 We indicated the base image we wanted to work from with the `FROM` command. We can now pull this image from DockerHub locally. To do so run:
 
-```bash
+{% highlight bash %}
 docker pull python:3.7
-```
+{% endhighlight %}
 
 ## Context & Build
 
@@ -98,9 +98,9 @@ Before we run launch our container, we need to build the image using the `docker
 
 Open your terminal, and navigate (`cd <location-of-directory>`) to the directory with the Dockerfile. Then, we can build the immage.
 
-```bash
+{% highlight bash %}
 docker build -t docker-demo:1.0 .
-```
+{% endhighlight %}
 
 Let's break this down. `docker build` is our command to build an image. We add the `-t` option which allows us to **tag** (or name) the image. I always prefer to do this since it helps keep images organized and is easier for me to recall. The tag is suffixxed with `:1.0` which indicates the version number. Lastly, the `.` tells us to build the Docker image at our current directory.
 
@@ -110,9 +110,9 @@ We have successfully built our image. Now it's time to run our image, or keeping
 
 The command to launch our docker container is `docker run`. We specify the name of our iamge (`docker-demo`) along with the image tag `1.0` tag.
 
-```bash
+{% highlight bash %}
 docker run docker-demo:1.0
-```
+{% endhighlight %}
 
 You should see your terminal print "Great Success!", indicating that your container ran.
 
@@ -122,22 +122,23 @@ There are a few other useful commands that will help you manage Docker locally.
 
 View all images locally:
 
-```bash
+{% highlight bash %}
 docker images
-```
+{% endhighlight %}
 
 See all your running conatiners:
 
-```bash
+{% highlight bash %}
 docker ps
-```
+{% endhighlight %}
 
 See all containers:
 
-```bash
+{% highlight bash %}
 docker ps -a
-```
+{% endhighlight %}
 
 ## Wrapping Up
 
-This was a very basic example of how Docker works, but it covers the main concepts. You can add a lot of of customization to your Dockerfile and build very robust and specific containers. We can have our containers process a bunch of files, open up an interactive python terminal / jupyter notebook as well (maybe this will be the topic of a follow up post). 
+This was a very basic example of how Docker works, but it covers the main concepts. You can add a lot of of customization to your Dockerfile and build very robust and specific containers. We can have our containers process a bunch of files, open up an interactive python terminal / jupyter notebook as well (maybe this will be the topic of a follow up post).
+
