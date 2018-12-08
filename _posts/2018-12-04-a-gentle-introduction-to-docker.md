@@ -23,7 +23,7 @@ This is where Docker comes into play. Docker will allow you to take an environme
 
 I've already found myself using some Docker terminology for my analogy section (containerize), so let's knock out some definitions up front.
 
-**Docker** - simply the name of the tool/platform/software we are using to create out standardized and reproducible data science environment
+**Docker** - simply the name of the tool/platform/software we are using to create our standardized and reproducible data science environment
 
 **Dockerfile** - this is a file that tells your Docker container what to do. This is like the written instructions for your recipe.
 
@@ -108,7 +108,7 @@ Let's break this down. `docker build` is our command to build an image. We add t
 
 We have successfully built our image. Now it's time to run our image, or keeping with the analogy, cook our pie.
 
-The command to launch our docker container is `docker run`. We specify the name of our iamge (`docker-demo`) along with the image tag `1.0` tag.
+The command to launch our docker container is `docker run`. We specify the name of our image (`docker-demo`) along with the image tag `1.0` tag.
 
 {% highlight bash %}
 docker run docker-demo:1.0
