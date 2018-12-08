@@ -20,7 +20,7 @@ First, I will read the data and clean it up a bit.
 
 
 
-```r
+{% highlight r %}
 # read the data
 carvana <- read.csv(paste(your_file_path, "training.csv", sep = ""))
 
@@ -48,14 +48,14 @@ varNumeric <- c("VehYear", "VehicleAge", "VehOdo", "MMRAcquisitionAuctionAverage
                 "MMRCurrentAuctionCleanPrice", "MMRCurrentRetailAveragePrice", "MMRCurrentRetailCleanPrice",
                 "VehBCost", "WarrantyCost")
 carvana[varNumeric] <- lapply(carvana[varNumeric], as.numeric)
-```
+{% endhighlight %}
 
 ## H2O and Random Forest
 
 Now that the data has been formatted, let's run the random forest model. Since I will be using H2O, I will need to initialize a local cluster before running the model. I will also be using a 75% of the data as a training set and 25% as the testing set. There is a separate [testing data set](https://www.kaggle.com/c/DontGetKicked/download/test.csv) available on Kaggle. If you wish to use the entire *training.csv* file as training set and the *test.csv* file as the test set, you could certainly do that too.
 
 
-```r
+{% highlight r %}
 # load the pacakge
 library(h2o)
 
@@ -77,7 +77,7 @@ inputModel <- names(carvana[-1])
 
 # building the random forest model
 rfCarvana <- h2o.randomForest(training_frame = carvana_h2o$train, validation_frame = carvana_h2o$test, x = inputModel, y = "IsBadBuy", ntrees = 100, stopping_rounds = 2)
-```
+{% endhighlight %}
 
 In this example, I just threw all the variables into the model. I would typically do a separate analysis to determine which features to include in the model, but let's skip over that for now. Next, we will take a look at variable importance and some metrics from the validation set.
 
@@ -86,13 +86,13 @@ In this example, I just threw all the variables into the model. I would typicall
 Let's see how our model performed. The output below summarizes the model performance on the test set of data used (the 25% held out from the *training.csv*).
 
 
-```r
+{% highlight r %}
 # print metrics from the validation set
 rfCarvana@model$validation_metric
-```
+{% endhighlight %}
 
 
-```
+{% highlight bash %}
 ## H2OBinomialMetrics: drf
 ## ** Reported on validation data. **
 ## MSE:  0.08770201
@@ -122,7 +122,7 @@ rfCarvana@model$validation_metric
 ## 10 max mean_per_class_accuracy  0.151616 0.676490 236
 ## 
 ## Gains/Lift Table: Extract with `h2o.gainsLift(<model>, <data>)` or `h2o.gainsLift(<model>, valid=<T/F>, xval=<T/F>)`
-```
+{% endhighlight %}
 
 Whenever I run a random forest model, I always look at the variable importance output. It is interesting to see which variable perform well and which do not. Accroding to the H2O [documentation](http://h2o-release.s3.amazonaws.com/h2o/rel-tverberg/4/docs-website/h2o-docs/data-science/drf.html) ... 
 
@@ -131,13 +131,13 @@ Whenever I run a random forest model, I always look at the variable importance o
 In our case, "WheelType" (The vehicle wheel type description (Alloy, Covers, Special)) was the stongest performer.
 
 
-```r
+{% highlight r %}
 # variable importance
 h2o.varimp(rfCarvana)
-```
+{% endhighlight %}
 
 
-```
+{% highlight bash %}
 ## Variable Importances: 
 ##    variable relative_importance scaled_importance percentage
 ## 1 WheelType        53910.425781          1.000000   0.183251
@@ -154,26 +154,26 @@ h2o.varimp(rfCarvana)
 ## 28         Transmission          620.358093          0.011507   0.002109
 ## 29            PRIMEUNIT          540.431274          0.010025   0.001837
 ## 30         IsOnlineSale          235.844467          0.004375   0.000802
-```
+{% endhighlight %}
 
 The variable importance plot displays the scaled importance.
 
 
-```r
+{% highlight r %}
 # plot of variable importance
 h2o.varimp_plot(rfCarvana)
-```
+{% endhighlight %}
 
 <img align="center" src="http://ehenry09.github.io/images/random-forest-with-h2o-var-imp.png">
 
 Lastly, I will take a look at the ROC curve. Our model is better than making random predictions - yay!
 
 
-```r
+{% highlight r %}
 # build and plot the ROC curve
 rfROC <- h2o.performance(rfCarvana, newdata = carvana_h2o$test)
 plot(rfROC)
-```
+{% endhighlight %}
 
 <img align="center" src="http://ehenry09.github.io/images/random-forest-with-h2o-roc.png">
 
@@ -182,11 +182,11 @@ plot(rfROC)
 If you are satisfied with the result, go ahead and shutdown the cluster you have running locally. However, if you would like to go back and refine the model you built, shut it down later. 
 
 
-```r
+{% highlight r %}
 # shut down the local cluster
 # if you want to refine your model futher, do not run this line
 h2o.shutdown(prompt = FALSE)
-```
+{% endhighlight %}
 
 ## Submission to Kaggle
 
@@ -195,7 +195,7 @@ If you want to [submit](https://www.kaggle.com/c/DontGetKicked/submissions/attac
 This solution will get you about middle of the pack on Kaggle.
 
 
-```r
+{% highlight r %}
 # get predicions for test set
 # note: the test dataset I called "carvana_test" and performed the preprocessing above
 preds <- h2o.predict(rfCarvana, carvana_test) 
@@ -207,4 +207,4 @@ names(submission) <- c("refID", "IsBadBuy")
 
 # write the file to csv
 write.csv(submission, file = paste(your_file_path, "submission.csv", sep = ""), row.names = FALSE)
-```
+{% endhighlight %}
