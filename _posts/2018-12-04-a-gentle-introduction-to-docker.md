@@ -116,7 +116,7 @@ docker run docker-demo:1.0
 
 You should see your terminal print "Great Success!", indicating that your container ran.
 
-## Other Userfule Commands
+## Other Userful Commands
 
 There are a few other useful commands that will help you manage Docker locally.
 
