@@ -17,11 +17,11 @@ The main character Arthur Dent haphazardly finds himself on a stolen spacecraft 
  
 >[Arthur] found a Nutri-Matic machine which had provided him with a plastic cup filled with a liquid that was almost, but not quite, entirely like unlike tea. The way it functioned was very interesting. When the *Drink* button was pressed it made an instant but highly detailed examination of the subject’s taste buds, a spectroscopic analysis of the subject’s metabolism and then sent tiny experimental signals down the neural pathways to the taste centers of the subject’s brain to see what was likely to go down well. However, no one know quite why it did this because it invariably delivered a cupful of liquid that was almost, but not quite, entirely unlike tea.
  
-As a data scientist, I often like to dig into the details and make systems often more complex than they need to be. I like to test a bunch of different models and optimize performance by tuning hyperparameters or using different feature transforms. From my experience, the gains in model performance from hyperparameter tuning are small compared to getting a basic, simplistic model up and running. This is especially true when we have models like random forests and neural networks that can fit many different data structures very well out of the box.
+As a data scientist, I often like to dig into the details and make systems more complex than they need to be. I like to test a bunch of different models and optimize performance by tuning hyperparameters or using different feature transforms. From my experience, the gains in model performance from hyperparameter tuning are small compared to getting a basic, simplistic model up and running. This is especially true when we have models like random forests and neural networks that can fit many different data structures very well out of the box.
  
 Before even applying machine learning, ask yourself whether machine learning is necessary to solve your problem. Often times a simple rule or heuristic can prove to be very effective. This speaks strongly to [Google’s Rule #1 of Machine Learning](https://developers.google.com/machine-learning/guides/rules-of-ml/) – don’t be afraid to launch a product without machine learning.
 
-Perhaps the *Nutri-Matic* machine would have pleased Arthur if it was recognized he was an *Earthman* and served him the most popular drink (besides water) from his home planet -- tea.
+Perhaps the *Nutri-Matic* machine would have pleased Arthur if it was recognized that he was an *Earthman* and served him the most popular drink (besides water) from his home planet -- tea.
 
 ## Computers can’t help if you’re asking the wrong questions.
  
@@ -33,7 +33,7 @@ In *Hitchhiker's Guide to the Galaxy*, a supercomputer *Deep Thought* has been a
  
 Humans play a critical role in designing a machine learning system. Framing the problem and effectively designing a solution to solve it is often more work than implementing a model (which can often be done in a few lines of code). If there is a flaw in the design or the wrong question is being asked, machine learning will produce bias results, poor-quality output, or even a solution that is ill-fit to the problem.
  
-How do we know whether we are asking the right questions? The computer, *Deep Thought*,  later states it is unable to tell the humans the right question to answer.
+How do we know whether we are asking the right questions? The computer, *Deep Thought*, later states it is unable to tell the humans the right question to answer.
  
 >“Look, all right, all right,” said Loonquawl, “can you just please tell us the question?”
 >
@@ -55,7 +55,7 @@ How do we know whether we are asking the right questions? The computer, *Deep Th
 >
 >Finally: “No,” he said firmly.
 
-I’ve personally found it helpful to explicitly write the goal or the question I’m trying to answer out in a single, coherent sentence. If you feel like you are unable to do this or do not have a clear vision of the question you are attempting to answer -- ask a peer. Industry experts and peers in the field can be great resources to help you nail down the end goal and how to approach the problem. If these steps are not taken, you may find yourself in the shoes of Loonqual and Phouchg and receive a disappointing result of your work.
+I’ve personally found it helpful to explicitly write the goal or the question I’m trying to answer out in a single, coherent sentence. If you feel like you are unable to do this or do not have a clear vision of the question you are attempting to answer -- ask a peer. Industry experts and coworkers can be great resources to help you nail down the end goal and how to approach the problem. If these steps are not taken, you may find yourself in the shoes of Loonqual and Phouchg and receive a disappointing result of your work.
  
 ## A lot can be accomplished with little compute.
  
