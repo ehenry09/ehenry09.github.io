@@ -11,7 +11,7 @@ I realize this is a sci-fi classic and I should have read it a long time ago, ho
 
 <!--break-->
  
-## Simple system are often superior to their complex counterparts.
+## Simple systems are often superior to their complex counterparts.
  
 The main character Arthur Dent haphazardly finds himself on a stolen spacecraft called the *Heart of Gold*.  The ship has a *Nutri-Matic* machine that serves individualized, appetite and digestion-optimized beverages. This machine must a distant cousin of our modern-day recommendation engine.
  
