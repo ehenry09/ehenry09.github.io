@@ -1,5 +1,5 @@
 ---
-title: "Tracking Location Data with IFTTT"
+title: "What Hitchhiker’s Guide to the Galaxy Taught Me About Machine Learning"
 date: "July 17, 2019"
 layout: post
 comments: true
@@ -7,9 +7,11 @@ comments: true
 
 
 
-# What Hitchhiker’s Guide to the Galaxy Taught Me About Machine Learning
- 
+
+
 I realize this is a sci-fi classic and I should have read it a long time ago, however, I recently finished reading *Hitchhiker's Guide to the Galaxy*.  I was surprised that a book written in the 1980s could be so present in its commentary on modern computing and machine learning, especially considering how fast the field is advancing. As I was reading, I dog-eared a few pages that I thought were particularly poignant and extremely relevant to my work as a data scientist. In the following sections, I’ve written up my top three takeaways from the book as they relate to my work. I hope you enjoy and if not anything else, convince you to read the book!
+
+<!--break-->
  
 ## Complex systems can be just as effective as simple ones.
  
