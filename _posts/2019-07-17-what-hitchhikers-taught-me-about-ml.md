@@ -1,6 +1,6 @@
 ---
 title: "Tracking Location Data with IFTTT"
-date: "January 10, 2019"
+date: "July 17, 2019"
 layout: post
 comments: true
 ---
