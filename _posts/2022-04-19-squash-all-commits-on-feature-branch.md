@@ -1,5 +1,5 @@
 ---
-title: "How to Squash All Aommits on a Feature Branch"
+title: "How to Squash All Commits on a Feature Branch"
 date: "April 19, 2022"
 layout: post
 comments: true
