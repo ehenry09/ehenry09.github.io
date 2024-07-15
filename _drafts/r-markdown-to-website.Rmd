@@ -9,7 +9,7 @@ comments: yes
 knitr::opts_chunk$set(fig.path="{{ site.url }}/images/building-a-website-with-r-markdown")
 ```
 
-When I first started building [my website](http://www.elliothenry.com/), I decided to use [Wix](http://www.wix.com/). It's a great website builder that has lots of custom options -- it is kind of like the PowerPoint of website editing. My one issue with Wix is that I wanted to easily embed some R code into its pages. I was already familiar with R Markdown, so being able to publish R Markdown documents directly would be ideal.
+When I first started building, I decided to use [Wix](http://www.wix.com/). It's a great website builder that has lots of custom options -- it is kind of like the PowerPoint of website editing. My one issue with Wix is that I wanted to easily embed some R code into its pages. I was already familiar with R Markdown, so being able to publish R Markdown documents directly would be ideal.
 
 {% raw %}
 In the following post, I am going to [ELI5](https://www.reddit.com/r/explainlikeimfive/) the entire process I go through to publish my R Markdown documents to a website. I probably went a little overboard embedding links, but I didn't want anyone to feel lost trying to figure out what I was talking about at any given moment (what the heck is a fork on GitHub?). It took my some time to iron out the process, so I hope you find this helpful.

@@ -7,7 +7,7 @@ comments: yes
 
 
 
-When I first started building [my website](http://www.elliothenry.com/), I decided to use [Wix](http://www.wix.com/). It's a great website builder that has lots of custom options -- it is kind of like the PowerPoint of website editing. My one issue with Wix is that I wanted to easily embed some R code into its pages. I was already familiar with R Markdown, so being able to publish R Markdown documents directly would be ideal.
+When I first started building [my website](blog.elliothenry.com/), I decided to use [Wix](http://www.wix.com/). It's a great website builder that has lots of custom options -- it is kind of like the PowerPoint of website editing. My one issue with Wix is that I wanted to easily embed some R code into its pages. I was already familiar with R Markdown, so being able to publish R Markdown documents directly would be ideal.
 
 In the following post, I am going to [ELI5](https://www.reddit.com/r/explainlikeimfive/) the entire process I go through to publish my R Markdown documents to a website. I probably went a little overboard embedding links, but I didn't want anyone to feel lost trying to figure out what I was talking about at any given moment (what the heck is a fork on GitHub?). It took my some time to iron out the process, so I hope you find this helpful.
 
@@ -25,7 +25,7 @@ Most of you reading this probably already have [R Studio](https://www.rstudio.co
 
 If R Studio is not already [linked to your GitHub account](https://www.r-bloggers.com/rstudio-and-github/), this will need to be setup. Once complete, create a new [project](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) using [version control](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN) and link the repository you just created (*yourgithubusername.github.io*). Now, all files from the Jekyll Now repository will be available locally. This is where I do all of the editing for my posts, which I then [push](https://help.github.com/articles/pushing-to-a-remote/) to GitHub once they are ready.
 
-I would now open the *_config.yml* in your local repository and add some personalization and social media to your site. I linked [Google Analytics](https://www.google.com/analytics/) and [Disqus](https://disqus.com/) to my site so people like you can comment or chide me for any mistakes I made while writing this :). There are also some really cool Jekyll [Themes](http://jekyll.tips/templates/) available for free. Since I originally used Wix to develop my site (and signed up for a yearly subscription, doh!), I did not add a custom theme. Maybe once my subscription lapses, I will get around to this. For now, I link my [ehenry09.github.io](https://ehenry09.github.io/) pages to my Wix [site](http://www.elliothenry.com/).
+I would now open the *_config.yml* in your local repository and add some personalization and social media to your site. I linked [Google Analytics](https://www.google.com/analytics/) and [Disqus](https://disqus.com/) to my site so people like you can comment or chide me for any mistakes I made while writing this :). There are also some really cool Jekyll [Themes](http://jekyll.tips/templates/) available for free. Since I originally used Wix to develop my site (and signed up for a yearly subscription, doh!), I did not add a custom theme. Maybe once my subscription lapses, I will get around to this. For now, I link my [ehenry09.github.io](https://ehenry09.github.io/) pages to my Wix [site](blog.elliothenry.com/).
 
 ## R Markdown
 
