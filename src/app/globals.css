@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased;
+  }
+}
+
+@layer components {
+  .prose-custom {
+    @apply prose prose-lg prose-gray dark:prose-invert max-w-none;
+  }
+  
+  .nav-link {
+    @apply px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200;
+  }
+  
+  .nav-link-active {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+} 
