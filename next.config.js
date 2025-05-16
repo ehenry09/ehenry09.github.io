@@ -4,8 +4,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Set basePath conditionally based on environment
-  basePath: process.env.GITHUB_ACTIONS ? '/ehenry09.github.io' : '',
+  // Custom domain (blog.elliothenry.com) means we don't need a basePath
+  basePath: '',
   // Disable server-side features since we're exporting static HTML
   trailingSlash: true,
 }
